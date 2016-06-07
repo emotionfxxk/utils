@@ -16,9 +16,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         md5Text = (TextView) findViewById(R.id.apk_md5);
         userIdText = (TextView) findViewById(R.id.user_id);
+        GAManager.init(this.getApplicationContext());
         String userId = UserIdUtil.getUniqueUId(this);
         Log.d("CommonUtils", "user id: " + userId);
         userIdText.setText("UserId: " + userId);
+        GAManager.reportUserId(userId);
         Md5Util.calculateApkMd5Async(this, new Md5Util.OnGetMd5() {
             @Override
             public void onGetMd5(final String md5) {
